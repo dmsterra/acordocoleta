@@ -20,46 +20,24 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@javax.persistence.Entity
 @Getter
 @Setter
-@Table(name = "acordo_coleta")
+@javax.persistence.Table(name = "acordo_coleta")
 public class AcordoColeta {
 
-	@Id
-	@Column(name = "acordo_coleta_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@javax.persistence.Id
+	@javax.persistence.Column(name = "acordo_coleta_id")
 	private Long id;
 	
-	@Column(name = "acordo_coleta_data_solicitacao")
+	@javax.persistence.Column(name = "acordo_coleta_data_solicitacao")
 	private LocalDateTime DataSolicitacao;
 	
-	@Column(name = "acordo_coleta_data_coleta")
+	@javax.persistence.Column(name = "acordo_coleta_data_coleta")
 	private LocalDateTime DataColeta;
 	
-	@Column(name = "acordo_coleta_status")
+	@javax.persistence.Column(name = "acordo_coleta_status")
 	private int status;
-
-	@OneToOne
-	@JoinColumn(name = "coletor_id")
-	private Coletor coletor;
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<RotaTrajeto> rotaTrajeto;
-	
-	@OneToMany(mappedBy = "acordoColeta", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<DescarteMaterial> coletas;
-	
-	
-	public List<DescarteMaterial> getColetas() {
-		return coletas;
-	}
-	
-	public void setColetas(List<DescarteMaterial> coletas) {
-		this.coletas = coletas;
-	}
 
 	public Long getId() {
 		return id;
@@ -67,10 +45,6 @@ public class AcordoColeta {
 	
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
-	public LocalDateTime getDataSolicitacao() {
-		return DataSolicitacao;
 	}
 
 	public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
@@ -85,13 +59,6 @@ public class AcordoColeta {
 		DataColeta = dataColeta;
 	}
 
-	public Coletor getColetor() {
-		return coletor;
-	}
-
-	public void setColetor(Coletor coletor) {
-		this.coletor = coletor;
-	}
 
 	public int getStatus() {
 		return status;
@@ -100,12 +67,4 @@ public class AcordoColeta {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	public List<RotaTrajeto> getRotaTrajeto() {
-		return rotaTrajeto;
-	}
-	
-	public void setRotaTrajeto(List<RotaTrajeto> rotaTrajeto) {
-		this.rotaTrajeto = rotaTrajeto;
-	}
-}
+}	

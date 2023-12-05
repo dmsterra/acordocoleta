@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.senac.sistemacoleta.entity.AcordoColeta;
 import com.senac.sistemacoleta.repository.AcordoColetaRepository;
-import jakarta.transaction.Transactional;
 
 @Service 
 public class AcordoColetaService {
@@ -27,20 +26,7 @@ public class AcordoColetaService {
 		return repository.save(acordo);
 	}
 	
-	@Transactional
-	public AcordoColeta update(AcordoColeta newAcordo, Long id){
-		Optional<AcordoColeta> acordo = findById(id);
-		
-		if(acordo.isPresent()) {
-			AcordoColeta acordoAtualizado = acordo.get();
-			acordoAtualizado.setDataColeta(newAcordo.getDataColeta());
-			acordoAtualizado.setDataSolicitacao(newAcordo.getDataSolicitacao());
-			acordoAtualizado.setRotaTrajeto(newAcordo.getRotaTrajeto());
-			return save(acordoAtualizado);
-		} else {
-			return null;
-		}
-	}
+
 	
 	@Transactional
 	public Boolean delete(Long id) {
@@ -51,5 +37,10 @@ public class AcordoColetaService {
 		}else {
 			return null;
 		}
+	}
+
+	public AcordoColeta update(AcordoColeta newAcordo, Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
